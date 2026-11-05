@@ -1,0 +1,101 @@
+{
+  "app_name": "NPS Saathi",
+  "tagline": "Your Trusted Pension Companion",
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "simulator": "Pension Simulator",
+    "financial": "Financial Overview",
+    "assistant": "AI Assistant",
+    "digilocker": "DigiLocker",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "landing": {
+    "hero_title": "Plan Your Retirement with Confidence",
+    "hero_subtitle": "NPS Saathi simplifies National Pension System for every Indian citizen. Understand your pension, plan your future.",
+    "cta": "Start Planning Your Retirement",
+    "cta_learn": "Learn About NPS",
+    "feature_1_title": "Easy to Understand",
+    "feature_1_desc": "We explain NPS in simple language that everyone can understand.",
+    "feature_2_title": "AI Assistant",
+    "feature_2_desc": "Ask questions about your pension and get instant, clear answers.",
+    "feature_3_title": "Voice Support",
+    "feature_3_desc": "Speak your queries in your language. We understand Hindi, Tamil, and more.",
+    "feature_4_title": "Smart Projections",
+    "feature_4_desc": "See how much pension you will receive based on your contributions.",
+    "what_is_nps": "What is NPS?",
+    "nps_explanation": "The National Pension System (NPS) is a voluntary retirement savings scheme designed to enable systematic savings during your working life. It is regulated by PFRDA (Pension Fund Regulatory and Development Authority).",
+    "senior_mode": "Senior Citizen Mode",
+    "senior_mode_desc": "Enable larger fonts and simpler navigation"
+  },
+  "dashboard": {
+    "title": "Your Pension Dashboard",
+    "nps_balance": "NPS Balance",
+    "monthly_pension": "Est. Monthly Pension",
+    "retirement_age": "Retirement Age",
+    "contributions": "Total Contributions",
+    "risk_profile": "Risk Profile",
+    "projection_title": "Retirement Corpus Projection",
+    "recommendations": "AI Recommendations",
+    "rec_1": "Increase your monthly contribution by ₹2,000 to reach ₹1.2 crore retirement corpus.",
+    "rec_2": "Consider switching to a balanced fund for better long-term returns.",
+    "rec_3": "You are on track to meet your retirement goal by age 60."
+  },
+  "simulator": {
+    "title": "Pension Simulator",
+    "subtitle": "See how your contributions grow over time",
+    "age": "Your Current Age",
+    "salary": "Monthly Salary (₹)",
+    "contribution": "Monthly Contribution (₹)",
+    "risk": "Risk Profile",
+    "conservative": "Conservative",
+    "balanced": "Balanced",
+    "aggressive": "Aggressive",
+    "calculate": "Calculate Pension",
+    "projected_corpus": "Projected Retirement Corpus",
+    "monthly_pension": "Estimated Monthly Pension",
+    "scenario_comparison": "Scenario Comparison"
+  },
+  "chat": {
+    "title": "AI Assistant",
+    "placeholder": "Ask about NPS, pension, retirement...",
+    "send": "Send",
+    "voice": "Voice",
+    "listening": "Listening...",
+    "thinking": "Thinking..."
+  },
+  "financial": {
+    "title": "Financial Overview",
+    "bank_accounts": "Bank Accounts",
+    "investments": "Investments",
+    "nps_balance": "NPS Balance",
+    "total_corpus": "Total Retirement Corpus",
+    "aa_connect": "Connect via Account Aggregator"
+  },
+  "digilocker": {
+    "title": "DigiLocker Documents",
+    "fetch": "Fetch from DigiLocker",
+    "nps_statement": "NPS Statement",
+    "kyc_docs": "KYC Documents",
+    "pension_cert": "Pension Certificate"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email Address",
+    "password": "Password",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "forgot": "Forgot Password?",
+    "no_account": "Don't have an account?",
+    "has_account": "Already have an account?"
+  },
+  "common": {
+    "language": "Language",
+    "loading": "Loading...",
+    "years": "years",
+    "per_month": "per month"
+  }
+}

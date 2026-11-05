@@ -20,6 +20,7 @@ import {
   MessageSquare,
   FileText,
   Shield,
+  Building2,
 } from 'lucide-react';
 
 export function AppSidebar() {
@@ -32,6 +33,7 @@ export function AppSidebar() {
     { title: t('nav.home'), url: '/', icon: Home },
     { title: t('nav.dashboard'), url: '/dashboard', icon: LayoutDashboard },
     { title: t('nav.simulator'), url: '/simulator', icon: Calculator },
+    { title: t('nav.schemes', 'NPS Schemes'), url: '/schemes', icon: Building2 },
     { title: t('nav.financial'), url: '/financial', icon: PieChart },
     { title: t('nav.assistant'), url: '/assistant', icon: MessageSquare },
     { title: t('nav.digilocker'), url: '/digilocker', icon: FileText },

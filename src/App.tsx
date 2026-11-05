@@ -8,6 +8,7 @@ import { AppLayout } from "@/components/AppLayout";
 import LandingPage from "@/pages/LandingPage";
 import DashboardPage from "@/pages/DashboardPage";
 import SimulatorPage from "@/pages/SimulatorPage";
+import SchemesPage from "@/pages/SchemesPage";
 import AssistantPage from "@/pages/AssistantPage";
 import FinancialPage from "@/pages/FinancialPage";
 import DigiLockerPage from "@/pages/DigiLockerPage";
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="/" element={<LandingPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/simulator" element={<SimulatorPage />} />
+              <Route path="/schemes" element={<SchemesPage />} />
               <Route path="/financial" element={<FinancialPage />} />
               <Route path="/assistant" element={<AssistantPage />} />
               <Route path="/digilocker" element={<DigiLockerPage />} />

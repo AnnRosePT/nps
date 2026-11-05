@@ -1,5 +1,11 @@
 # 🇮🇳 NPS Saathi — Your Trusted Pension Companion
 
+[![Build & Test](https://img.shields.io/badge/tests-16%20passed-brightgreen.svg)](https://github.com/AnnRosePT/nps)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.3-61dafb.svg)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8.svg)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 **NPS Saathi** is an AI-powered, multilingual web platform designed to simplify the National Pension System (NPS) for every Indian citizen. It empowers individuals to plan their retirement with confidence through intuitive simulation tools, voice-guided AI assistance, and seamless DigiLocker integration.
 
 ---

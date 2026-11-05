@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { IndianRupee, Calendar, TrendingUp, PiggyBank, ShieldCheck, Lightbulb } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { formatINR, formatCompactINR } from '@/lib/utils';
 
 const projectionData = [
   { age: 30, corpus: 200000 },
@@ -68,9 +69,9 @@ export default function DashboardPage() {
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(214, 20%, 88%)" />
               <XAxis dataKey="age" label={{ value: 'Age', position: 'bottom' }} tick={{ fontSize: 14 }} />
-              <YAxis tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} tick={{ fontSize: 14 }} />
+              <YAxis tickFormatter={(v) => formatCompactINR(v)} tick={{ fontSize: 14 }} />
               <Tooltip
-                formatter={(value: number) => [`₹${value.toLocaleString('en-IN')}`, 'Corpus']}
+                formatter={(value: number) => [formatINR(value), 'Corpus']}
                 labelFormatter={(label) => `Age: ${label}`}
                 contentStyle={{ borderRadius: '0.75rem', border: '1px solid hsl(214, 20%, 88%)' }}
               />

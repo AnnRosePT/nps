@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Banknote, TrendingUp, IndianRupee, PieChart, Link2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PieChart as RechartsPie, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { formatINR } from '@/lib/utils';
 
 const financialData = [
   { name: 'Bank Accounts', value: 450000, color: 'hsl(214, 80%, 32%)' },
@@ -35,7 +36,7 @@ export default function FinancialPage() {
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="gov-card text-center">
         <PieChart className="mx-auto mb-2 h-8 w-8 text-primary" />
         <div className="text-sm text-muted-foreground">{t('financial.total_corpus')}</div>
-        <div className="mt-1 text-3xl font-bold text-foreground">₹{totalCorpus.toLocaleString('en-IN')}</div>
+        <div className="mt-1 text-3xl font-bold text-foreground">{formatINR(totalCorpus)}</div>
       </motion.div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -70,7 +71,7 @@ export default function FinancialPage() {
                     <Cell key={entry.name} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number) => `₹${value.toLocaleString('en-IN')}`} />
+                <Tooltip formatter={(value: number) => formatINR(value)} />
               </RechartsPie>
             </ResponsiveContainer>
           </div>

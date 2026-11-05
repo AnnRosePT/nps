@@ -33,16 +33,16 @@ export function Navbar() {
 
       <div className="ml-auto flex items-center gap-3">
         {/* Senior Mode Toggle */}
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 md:flex" title="Toggle Senior Mode (Alt+S)">
           <Eye className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
           <label htmlFor="senior-toggle" className="text-sm text-muted-foreground cursor-pointer">
-            {t('landing.senior_mode')}
+            {t('landing.senior_mode')} <span className="text-xs opacity-60 font-mono hidden lg:inline">(Alt+S)</span>
           </label>
           <Switch
             id="senior-toggle"
             checked={seniorMode}
             onCheckedChange={toggleSeniorMode}
-            aria-label={t('landing.senior_mode')}
+            aria-label={`${t('landing.senior_mode')} (Shortcut: Alt+S)`}
           />
         </div>
 

@@ -7,24 +7,9 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { Calculator, IndianRupee, TrendingUp } from 'lucide-react';
-
-interface SimResult {
-  corpus: number;
-  monthlyPension: number;
-}
-
-function calculatePension(age: number, contribution: number, riskReturn: number): SimResult {
-  const years = 60 - age;
-  const months = years * 12;
-  const monthlyRate = riskReturn / 12 / 100;
-  const corpus = contribution * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
-  const annuityRate = 0.06;
-  const monthlyPension = (corpus * 0.4 * annuityRate) / 12 + (corpus * 0.6) / (20 * 12);
-  return { corpus: Math.round(corpus), monthlyPension: Math.round(monthlyPension) };
-}
-
-const riskReturns = { conservative: 8, balanced: 10, aggressive: 12 };
+import { Calculator, IndianRupee, TrendingUp, ShieldCheck, PieChart, Sparkles } from 'lucide-react';
+import { calculatePension, RISK_PROFILES, type PensionResult } from '@/lib/pensionCalculator';
+import { formatINR } from '@/lib/utils';
 
 export default function SimulatorPage() {
   const { t } = useTranslation();
@@ -32,27 +17,33 @@ export default function SimulatorPage() {
   const [salary, setSalary] = useState(50000);
   const [contribution, setContribution] = useState(5000);
   const [risk, setRisk] = useState<'conservative' | 'balanced' | 'aggressive'>('balanced');
-  const [result, setResult] = useState<SimResult | null>(null);
+  const [result, setResult] = useState<PensionResult | null>(null);
 
   const calculate = useCallback(() => {
-    setResult(calculatePension(age, contribution, riskReturns[risk]));
+    setResult(
+      calculatePension({
+        currentAge: age,
+        monthlyContribution: contribution,
+        expectedAnnualReturn: RISK_PROFILES[risk].rate,
+      })
+    );
   }, [age, contribution, risk]);
 
   const scenarioData = [
     {
       name: t('simulator.conservative'),
-      corpus: calculatePension(age, contribution, 8).corpus,
-      pension: calculatePension(age, contribution, 8).monthlyPension,
+      corpus: calculatePension({ currentAge: age, monthlyContribution: contribution, expectedAnnualReturn: RISK_PROFILES.conservative.rate }).totalCorpus,
+      pension: calculatePension({ currentAge: age, monthlyContribution: contribution, expectedAnnualReturn: RISK_PROFILES.conservative.rate }).monthlyPension,
     },
     {
       name: t('simulator.balanced'),
-      corpus: calculatePension(age, contribution, 10).corpus,
-      pension: calculatePension(age, contribution, 10).monthlyPension,
+      corpus: calculatePension({ currentAge: age, monthlyContribution: contribution, expectedAnnualReturn: RISK_PROFILES.balanced.rate }).totalCorpus,
+      pension: calculatePension({ currentAge: age, monthlyContribution: contribution, expectedAnnualReturn: RISK_PROFILES.balanced.rate }).monthlyPension,
     },
     {
       name: t('simulator.aggressive'),
-      corpus: calculatePension(age, contribution, 12).corpus,
-      pension: calculatePension(age, contribution, 12).monthlyPension,
+      corpus: calculatePension({ currentAge: age, monthlyContribution: contribution, expectedAnnualReturn: RISK_PROFILES.aggressive.rate }).totalCorpus,
+      pension: calculatePension({ currentAge: age, monthlyContribution: contribution, expectedAnnualReturn: RISK_PROFILES.aggressive.rate }).monthlyPension,
     },
   ];
 
@@ -104,16 +95,38 @@ export default function SimulatorPage() {
         {/* Results */}
         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
           {result && (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="gov-card text-center">
-                <IndianRupee className="mx-auto mb-2 h-8 w-8 text-primary" />
-                <div className="text-sm text-muted-foreground">{t('simulator.projected_corpus')}</div>
-                <div className="mt-1 text-2xl font-bold text-primary">₹{result.corpus.toLocaleString('en-IN')}</div>
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="gov-card text-center">
+                  <IndianRupee className="mx-auto mb-2 h-8 w-8 text-primary" />
+                  <div className="text-sm text-muted-foreground">{t('simulator.projected_corpus')}</div>
+                  <div className="mt-1 text-2xl font-bold text-primary">{formatINR(result.totalCorpus)}</div>
+                </div>
+                <div className="gov-card text-center">
+                  <TrendingUp className="mx-auto mb-2 h-8 w-8 text-success" />
+                  <div className="text-sm text-muted-foreground">{t('simulator.monthly_pension')}</div>
+                  <div className="mt-1 text-2xl font-bold text-success">{formatINR(result.monthlyPension)}</div>
+                </div>
               </div>
-              <div className="gov-card text-center">
-                <TrendingUp className="mx-auto mb-2 h-8 w-8 text-success" />
-                <div className="text-sm text-muted-foreground">{t('simulator.monthly_pension')}</div>
-                <div className="mt-1 text-2xl font-bold text-success">₹{result.monthlyPension.toLocaleString('en-IN')}</div>
+
+              {/* Detailed Breakdown */}
+              <div className="gov-card grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                <div>
+                  <div className="text-xs text-muted-foreground">Total Invested</div>
+                  <div className="text-sm font-semibold text-foreground mt-1">{formatINR(result.totalInvestment)}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Interest Earned</div>
+                  <div className="text-sm font-semibold text-success mt-1">{formatINR(result.totalInterest)}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Lump Sum (60%)</div>
+                  <div className="text-sm font-semibold text-primary mt-1">{formatINR(result.lumpSumAmount)}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Tax Savings/yr</div>
+                  <div className="text-sm font-semibold text-accent mt-1">{formatINR(result.annualTaxSavings)}</div>
+                </div>
               </div>
             </div>
           )}
@@ -126,7 +139,7 @@ export default function SimulatorPage() {
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(214, 20%, 88%)" />
                   <XAxis dataKey="name" tick={{ fontSize: 13 }} />
                   <YAxis tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} tick={{ fontSize: 13 }} />
-                  <Tooltip formatter={(value: number) => [`₹${value.toLocaleString('en-IN')}`, '']} contentStyle={{ borderRadius: '0.75rem' }} />
+                  <Tooltip formatter={(value: number) => [formatINR(value), '']} contentStyle={{ borderRadius: '0.75rem' }} />
                   <Legend />
                   <Bar dataKey="corpus" name="Corpus" fill="hsl(214, 80%, 32%)" radius={[6, 6, 0, 0]} />
                   <Bar dataKey="pension" name="Monthly Pension" fill="hsl(142, 71%, 35%)" radius={[6, 6, 0, 0]} />

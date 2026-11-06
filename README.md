@@ -1,6 +1,7 @@
 # 🇮🇳 NPS Saathi — Your Trusted Pension Companion
 
-[![Build & Test](https://img.shields.io/badge/tests-16%20passed-brightgreen.svg)](https://github.com/AnnRosePT/nps)
+[![CI](https://github.com/AnnRosePT/nps/actions/workflows/ci.yml/badge.svg)](https://github.com/AnnRosePT/nps/actions)
+[![Build & Test](https://img.shields.io/badge/tests-32%20passed-brightgreen.svg)](https://github.com/AnnRosePT/nps)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18.3-61dafb.svg)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8.svg)](https://tailwindcss.com/)
@@ -12,15 +13,12 @@
 
 ## 🌟 Key Features
 
-- 📊 **Interactive Pension Simulator**: Accurately estimate retirement corpus, monthly annuity payouts, and tax savings under Tier I & Tier II NPS accounts.
-- 🤖 **AI-Powered Pension Assistant**: Get instant, contextual guidance on rules, returns, tax exemptions, and scheme choices.
-- 🎙️ **Voice Query & Multilingual Support**: Fully localized in multiple languages:
-  - English
-  - Hindi (हिंदी)
-  - Tamil (தமிழ்)
-  - Malayalam (മലയാളം)
-- 🔒 **DigiLocker Integration**: Quick, paperless KYC and document verification for effortless onboarding.
-- 👓 **Senior Citizen & Accessibility Mode**: High-contrast themes, scalable typography, and simplified navigation for seniors.
+- 📊 **Interactive Pension Simulator**: Accurately estimate retirement corpus, monthly annuity payouts, and tax savings under Tier I & Tier II NPS accounts. Includes year-by-year CSV export.
+- 🏛️ **NPS Schemes & Fund Managers Explorer**: Real-time performance metrics for top Pension Fund Managers (SBI, LIC, HDFC, ICICI, UTI, Kotak) with dynamic Auto Choice Lifecycle rebalancing (LC75, LC50, LC25).
+- 🤖 **AI-Powered Pension Assistant**: Get instant, contextual guidance on rules, returns, tax exemptions, and scheme choices with Web Speech Text-to-Speech (TTS) narration.
+- 🎙️ **Voice Query & Multilingual Support**: Fully localized in English, Hindi (हिंदी), Tamil (தமிழ்), and Malayalam (മലയാളം).
+- 🔒 **DigiLocker Integration**: Paperless e-KYC authentication, 6-digit OTP verification, and digitally signed certificate issuance.
+- 👓 **Senior Citizen & Accessibility Mode**: Keyboard shortcut (`Alt + S`), high-contrast themes, scalable typography, and simplified navigation for seniors.
 - 📈 **Personalized Financial Dashboard**: Track investments, pension health scores, and asset allocation across equity, corporate bonds, and government securities.
 
 ---

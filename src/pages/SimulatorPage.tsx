@@ -7,9 +7,11 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { Calculator, IndianRupee, TrendingUp, ShieldCheck, PieChart, Sparkles } from 'lucide-react';
+import { Calculator, IndianRupee, TrendingUp, ShieldCheck, PieChart, Sparkles, Download } from 'lucide-react';
 import { calculatePension, RISK_PROFILES, type PensionResult } from '@/lib/pensionCalculator';
 import { formatINR } from '@/lib/utils';
+import { generatePensionCSV, triggerFileDownload } from '@/lib/exportReport';
+import { toast } from 'sonner';
 
 export default function SimulatorPage() {
   const { t } = useTranslation();
@@ -127,6 +129,23 @@ export default function SimulatorPage() {
                   <div className="text-xs text-muted-foreground">Tax Savings/yr</div>
                   <div className="text-sm font-semibold text-accent mt-1">{formatINR(result.annualTaxSavings)}</div>
                 </div>
+              </div>
+
+              {/* Export Action */}
+              <div className="flex justify-end">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const csv = generatePensionCSV(result);
+                    triggerFileDownload(`nps-pension-projection-age-${result.currentAge}.csv`, csv);
+                    toast.success('Retirement projection report exported to CSV!');
+                  }}
+                  className="gap-2 text-xs"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  Export Projection (CSV)
+                </Button>
               </div>
             </div>
           )}
